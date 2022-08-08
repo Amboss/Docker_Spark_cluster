@@ -1,0 +1,72 @@
+version: "3.3"
+
+volumes:
+  db:
+    driver: local
+
+services:
+  spark-master:
+    image: postgres-spark-cluster:1.0
+    container_name: mstr
+    ports:
+      - "9090:8080"
+      - "7077:7077"
+    volumes:
+       - ./app:/opt/spark-app
+       - ./data:/opt/spark-data
+    environment:
+      - SPARK_LOCAL_IP=spark-master
+      - SPARK_WORKLOAD=master
+
+  spark-worker-a:
+    image: postgres-spark-cluster:1.0
+    container_name: wr-a
+    ports:
+      - "9091:8080"
+      - "7000:7000"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=1G
+      - SPARK_DRIVER_MEMORY=1G
+      - SPARK_EXECUTOR_MEMORY=1G
+      - SPARK_WORKLOAD=worker
+      - SPARK_LOCAL_IP=spark-worker-a
+    volumes:
+       - ./app:/opt/spark-app
+       - ./data:/opt/spark-data
+
+  spark-worker-b:
+    image: postgres-spark-cluster:1.0
+    container_name: wr-b
+    ports:
+      - "9092:8080"
+      - "7001:7000"
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=1G
+      - SPARK_DRIVER_MEMORY=1G
+      - SPARK_EXECUTOR_MEMORY=1G
+      - SPARK_WORKLOAD=worker
+      - SPARK_LOCAL_IP=spark-worker-b
+    volumes:
+        - ./app:/opt/spark-app
+        - ./data:/opt/spark-data
+
+  db:
+    image: postgres
+    restart: unless-stopped
+    container_name: pg
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=demo
+    volumes:
+      - db:/var/lib/postgresql/db
