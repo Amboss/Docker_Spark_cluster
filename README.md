@@ -94,9 +94,9 @@ docker-compose down --volumes
 ```
 
 
-[1]: https://github.com/Amboss/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/Dockerfile
-[2]: https://github.com/Amboss/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/docker-compose.yml
-[3]: https://github.com/Amboss/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/app/main.py
-[4]: https://github.com/Amboss/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/scripts/prepare_data.sh
+[1]: https://github.com/s-evsyukov/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/Dockerfile
+[2]: https://github.com/s-evsyukov/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/docker-compose.yml
+[3]: https://github.com/s-evsyukov/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/app/main.py
+[4]: https://github.com/s-evsyukov/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/scripts/prepare_data.sh
 [5]: http://web.mta.info/developers/MTA-Bus-Time-historical-data.html
-[6]: https://github.com/Amboss/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/scripts/spark_config.sh
+[6]: https://github.com/s-evsyukov/Docker_Spark_cluster/blob/191bf55816f1c82ad7976629b0f165c0c8c451ac/scripts/spark_config.sh
